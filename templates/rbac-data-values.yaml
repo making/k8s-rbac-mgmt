@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rbac-data-values
+  namespace: #@ data.values.namespace
+stringData:
+  values.yaml: |
+    ---
+    rbac: 
+      rolebindings: []
+      clusterrolebindings: []
