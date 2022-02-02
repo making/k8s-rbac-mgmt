@@ -1,0 +1,26 @@
+#@ load("@ytt:data", "data")
+#@ for clusterrolebinding in data.values.rbac.clusterrolebindings:
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: #@ "{}-binding".format(clusterrolebinding.clusterrole)
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: #@ clusterrolebinding.clusterrole
+subjects:
+#@ for serviceaccount in clusterrolebinding.serviceaccounts:
+#@ for target_ns in serviceaccount.namespaces:
+- kind: ServiceAccount
+  name: #@ serviceaccount.name
+  namespace: #@ target_ns.name
+#@ end
+#@ end
+#@ for/end user in clusterrolebinding.users:
+- kind: User
+  name: #@ user.name
+#@ for/end group in clusterrolebinding.groups:
+- kind: Group
+  name: #@ group.name
+#@ end

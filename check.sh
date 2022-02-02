@@ -10,19 +10,19 @@ rbac:
     - name: ns2
     users:
     - name: user1
-    - name: user2
-    groups:
-    - name: developers
-    serviceaccounts:
-    - name: ci-bot
-  clusterrolebindings:
-  - clusterrole: admin
-    users:
-    - name: admin
     groups:
     - name: administrators
     serviceaccounts:
     - name: admin-bot
+  clusterrolebindings:
+  - clusterrole: edit
+    users:
+    - name: user2
+    - name: user3
+    groups:
+    - name: developers
+    serviceaccounts:
+    - name: ci-bot
       namespaces:
       - name: ns1
       - name: ns2
