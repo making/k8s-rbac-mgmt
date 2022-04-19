@@ -2,7 +2,7 @@
 
 #@ def target_rolebinding(role, rolebindings):
 #@   for rolebinding in rolebindings:
-#@     if rolebinding.role == role:
+#@     if rolebinding.role.name == role:
 #@       return rolebinding
 #@     end
 #@   end

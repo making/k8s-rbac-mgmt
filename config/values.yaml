@@ -2,13 +2,16 @@
 ---
 rbac:
   rolebindings:
-  - role: ns-admin
+  - role:
+      kind: Role
+      name: ns-admin
     namespaces: []
     users: []
     groups: []
     serviceaccounts: []
   clusterrolebindings:
-  - clusterrole: admin
+  - role:
+      name: admin
     users: []
     groups: []
     serviceaccounts: []
@@ -16,7 +19,9 @@ rbac:
 #! Example
 #! rbac:
 #!   rolebindings:
-#!   - role: ns-admin
+#!   - role:
+#!       kind: Role
+#!       name: ns-admin
 #!     namespaces:
 #!     - name: ns1
 #!       create: true
@@ -29,7 +34,8 @@ rbac:
 #!     serviceaccounts:
 #!     - name: ci-bot
 #!   clusterrolebindings:
-#!   - clusterrole: admin
+#!   - role:
+#!       name: admin
 #!     users:
 #!     - name: admin
 #!     groups:

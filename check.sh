@@ -3,7 +3,9 @@ set -euo pipefail
 ytt -f $(dirname $0)/config --data-values-file <(cat <<EOF
 rbac:
   rolebindings:
-  - role: ns-admin
+  - role:
+      kind: Role
+      name: ns-admin
     namespaces:
     - name: ns1
       create: true
@@ -15,7 +17,8 @@ rbac:
     serviceaccounts:
     - name: admin-bot
   clusterrolebindings:
-  - clusterrole: edit
+  - role:
+      name: edit
     users:
     - name: user2
     - name: user3
